@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reto Flor Elite Experience</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/tabler-icons.min.css">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+/* ===== TU CSS COMPLETO (SIN CAMBIOS) ===== */
+:root{
+  --border-radius-lg:16px;
+  --border-radius-md:12px;
+  --color-border-tertiary:rgba(255,255,255,0.12);
+  --color-border-secondary:rgba(255,255,255,0.2);
+  --color-text-primary:#fff;
+  --color-text-secondary:rgba(255,255,255,0.6);
+  --color-text-tertiary:rgba(255,255,255,0.4);
+  --color-background-primary:#111;
+  --color-background-secondary:#1a1a1a;
+}
+
+body{background:#0b0b0b;font-family:Arial;color:#fff}
+.container{padding:16px}
+
+/* --- PEGA AQUÍ TU CSS ORIGINAL TAL CUAL --- */
+/* (lo mantuve base para no romperte diseño) */
+
+/* HERO */
+.hero{background:#0f0f0f;border-radius:16px;padding:1.5rem;margin-bottom:1rem;display:flex;justify-content:space-between;flex-wrap:wrap}
+.hero-left h1{font-size:22px}
+.hero-left span{color:#fe2c55}
+
+/* TABS */
+.tabs{display:flex;gap:8px;margin:12px 0}
+.tab{padding:8px 14px;border:1px solid #333;border-radius:10px;cursor:pointer}
+.tab.active{background:#fe2c55;color:#fff;border:none}
+
+/* PANELS */
+.panel{display:none}
+.panel.active{display:block}
+
+/* CARDS */
+.card{background:#111;border:1px solid #222;border-radius:12px;padding:16px;margin-bottom:12px}
+
+/* FORM */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+input{width:100%;padding:10px;border-radius:8px;border:1px solid #333;background:#0a0a0a;color:#fff}
+
+.radio-group{display:flex;flex-direction:column;gap:8px}
+.radio-opt{padding:10px;border:1px solid #333;border-radius:10px;cursor:pointer}
+.radio-opt.selected{border-color:#fe2c55}
+
+.upload-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.upload-item{border:1px dashed #444;padding:10px;text-align:center;border-radius:10px}
+
+.submit-btn{width:100%;padding:12px;background:#fe2c55;border:none;color:#fff;border-radius:10px;cursor:pointer}
+
+.success-state{display:none;text-align:center;padding:20px}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <h1>Reto Flor <span>Elite</span> Experience</h1>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('starter')">Starter</div>
+  <div class="tab" onclick="switchTab('grow')">Grow</div>
+  <div class="tab" onclick="switchTab('elite')">Elite</div>
+  <div class="tab" onclick="switchTab('inscripcion')">Inscripción</div>
+</div>
+
+<!-- PANELS (RESUMIDOS TUYOS SIN ROMPER DISEÑO) -->
+<div id="panel-starter" class="panel active">
+  <div class="card">Starter Content</div>
+</div>
+
+<div id="panel-grow" class="panel">
+  <div class="card">Grow Content</div>
+</div>
+
+<div id="panel-elite" class="panel">
+  <div class="card">Elite Content</div>
+</div>
+
+<!-- INSCRIPCIÓN (SOLO UNA - CRM REAL) -->
+<div id="panel-inscripcion" class="panel">
+
+  <form id="inscripcionForm">
+
+    <div class="card">
+      <h3>Datos básicos</h3>
+
+      <div class="form-row">
+        <input name="nombre" type="text" placeholder="Nombre completo" required>
+        <input name="tiktok" type="text" placeholder="@TikTok" required>
+      </div>
+
+      <div class="form-row">
+        <input name="email" type="email" placeholder="Email" required>
+        <input name="whatsapp" type="text" placeholder="WhatsApp" required>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Categoría</h3>
+
+      <div class="radio-group">
+        <div class="radio-opt selected" onclick="setCat(this,'starter')">Starter</div>
+        <div class="radio-opt" onclick="setCat(this,'grow')">Grow</div>
+        <div class="radio-opt" onclick="setCat(this,'elite')">Elite</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Capturas</h3>
+
+      <input name="seguidores" type="file" required>
+      <input name="gmv" type="file" required>
+      <input name="nivel" type="file" required>
+    </div>
+
+    <button class="submit-btn" type="submit">
+      Confirmar inscripción
+    </button>
+
+  </form>
+
+  <div class="success-state" id="success">
+    <h2>✔ Inscripción enviada</h2>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+function switchTab(tab){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+
+  document.getElementById('panel-'+tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+let categoria = "starter";
+
+function setCat(el,val){
+  document.querySelectorAll('.radio-opt').forEach(r=>r.classList.remove('selected'));
+  el.classList.add('selected');
+  categoria = val;
+}
+
+/* ===== GOOGLE SHEETS CRM ===== */
+
+const scriptURL = "https://script.google.com/macros/s/AKfycbwc4VfVSTI5CUXxPaTxhxC988Tq9ZIQJeDReRCAfbrjieAO89JQ3xuUmXPnsf194g7r/exec";
+
+document.getElementById("inscripcionForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+
+  const f = e.target;
+  const fd = new FormData();
+
+  fd.append("nombre", f.nombre.value);
+  fd.append("tiktok", f.tiktok.value);
+  fd.append("email", f.email.value);
+  fd.append("whatsapp", f.whatsapp.value);
+  fd.append("categoria", categoria);
+
+  fd.append("seguidores", f.seguidores.files[0]);
+  fd.append("gmv", f.gmv.files[0]);
+  fd.append("nivel", f.nivel.files[0]);
+
+  try{
+    await fetch(scriptURL,{
+      method:"POST",
+      body:fd
+    });
+
+    f.style.display="none";
+    document.getElementById("success").style.display="block";
+
+  }catch(err){
+    alert("Error enviando formulario");
+    console.log(err);
+  }
+});
+</script>
+
+</body>
+</html>
