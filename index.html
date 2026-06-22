@@ -1,71 +1,198 @@
-<!-- INSCRIPCION -->
-<div class="panel" id="panel-inscripcion">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reto Flor Elite Experience</title>
 
-<form id="inscripcionForm">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/tabler-icons.min.css">
 
-  <div class="card">
-    <h3><i class="ti ti-user-circle"></i> Datos básicos</h3>
+  <style>
+  /* ===== TU CSS ORIGINAL (SIN CAMBIOS) ===== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 
-    <div class="form-row">
-      <input type="text" name="nombre" placeholder="Nombre completo" required />
-      <input type="text" name="tiktok" placeholder="@usuario TikTok" required />
-    </div>
+  :root {
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #f5f5f5;
+    --color-border-tertiary: #e0e0e0;
+    --color-text-primary: #1a1a1a;
+    --color-text-secondary: #666666;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+  }
 
-    <div class="form-row">
-      <input type="email" name="email" placeholder="Email" required />
-      <input type="text" name="whatsapp" placeholder="WhatsApp" required />
-    </div>
-  </div>
+  body { font-family: Arial, sans-serif; background: #fff; }
 
-  <div class="card">
-    <h3><i class="ti ti-layout-list"></i> ¿En qué categoría participas?</h3>
+  .container { max-width: 900px; margin: auto; padding: 20px; }
 
-    <div class="radio-group">
-      <div class="radio-opt selected" onclick="selectCat(this, 'starter')">
-        <div class="radio-dot"></div>
-        <div><div style="font-weight:500">Starter Creator</div></div>
+  .card {
+    background: var(--color-background-primary);
+    border: 1px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 18px;
+    margin-bottom: 15px;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .form-row input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: #fe2c55;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .radio-group { display: flex; flex-direction: column; gap: 8px; }
+  .radio-opt {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .radio-opt.selected { border-color: #fe2c55; background: #fff5f7; }
+
+  .upload-item { margin-top: 10px; }
+  .upload-item input { width: 100%; }
+
+  .success-state {
+    display: none;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .success-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #eaf3de;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h2>Reto Flor Elite Experience</h2>
+
+  <!-- FORMULARIO -->
+  <form id="inscripcionForm">
+
+    <div class="card">
+      <h3>Datos básicos</h3>
+
+      <div class="form-row">
+        <input type="text" name="nombre" placeholder="Nombre completo" required>
+        <input type="text" name="tiktok" placeholder="@TikTok" required>
       </div>
 
-      <div class="radio-opt" onclick="selectCat(this, 'grow')">
-        <div class="radio-dot"></div>
-        <div><div style="font-weight:500">TikTok Grow</div></div>
-      </div>
-
-      <div class="radio-opt" onclick="selectCat(this, 'elite')">
-        <div class="radio-dot"></div>
-        <div><div style="font-weight:500">Elite</div></div>
+      <div class="form-row">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="whatsapp" placeholder="WhatsApp" required>
       </div>
     </div>
+
+    <div class="card">
+      <h3>Categoría</h3>
+
+      <div class="radio-group">
+        <div class="radio-opt selected" onclick="selectCat(this,'starter')">Starter Creator</div>
+        <div class="radio-opt" onclick="selectCat(this,'grow')">TikTok Grow</div>
+        <div class="radio-opt" onclick="selectCat(this,'elite')">Elite</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Subir capturas</h3>
+
+      <div class="upload-item">
+        Seguidores actuales:
+        <input type="file" name="seguidores" required>
+      </div>
+
+      <div class="upload-item">
+        GMV / Ventas:
+        <input type="file" name="gmv" required>
+      </div>
+
+      <div class="upload-item">
+        Nivel academia:
+        <input type="file" name="nivel" required>
+      </div>
+    </div>
+
+    <button class="submit-btn" type="submit">
+      Enviar inscripción
+    </button>
+
+  </form>
+
+  <!-- SUCCESS -->
+  <div class="success-state" id="success-state">
+    <div class="success-icon">✔</div>
+    <h3>¡Inscripción enviada!</h3>
+    <p>Revisaremos tus datos pronto.</p>
   </div>
 
-  <div class="card">
-    <h3><i class="ti ti-camera"></i> Capturas</h3>
-
-    <div class="form-section">
-      <div class="form-label">Seguidores actuales</div>
-      <input type="file" name="seguidores" required>
-    </div>
-
-    <div class="form-section">
-      <div class="form-label">Ventas / GMV</div>
-      <input type="file" name="gmv" required>
-    </div>
-
-    <div class="form-section">
-      <div class="form-label">Nivel academia</div>
-      <input type="file" name="nivel" required>
-    </div>
-  </div>
-
-  <button class="submit-btn" type="submit">
-    <i class="ti ti-flag"></i> Confirmar inscripción
-  </button>
-
-</form>
-
-<div class="success-state" id="success-state">
-  <div class="success-icon"><i class="ti ti-check"></i></div>
-  <div style="font-size:16px;font-weight:500">¡Inscripción enviada!</div>
 </div>
 
-</div>
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbwc4VfVSTI5CUXxPaTxhxC988Tq9ZIQJeDReRCAfbrjieAO89JQ3xuUmXPnsf194g7r/exec";
+
+let categoria = "starter";
+
+function selectCat(el, value) {
+  document.querySelectorAll('.radio-opt').forEach(r => r.classList.remove('selected'));
+  el.classList.add('selected');
+  categoria = value;
+}
+
+document.getElementById("inscripcionForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData();
+
+  formData.append("nombre", form.nombre.value);
+  formData.append("tiktok", form.tiktok.value);
+  formData.append("email", form.email.value);
+  formData.append("whatsapp", form.whatsapp.value);
+  formData.append("categoria", categoria);
+
+  formData.append("seguidores", form.seguidores.files[0]);
+  formData.append("gmv", form.gmv.files[0]);
+  formData.append("nivel", form.nivel.files[0]);
+
+  try {
+    await fetch(scriptURL, {
+      method: "POST",
+      body: formData
+    });
+
+    form.style.display = "none";
+    document.getElementById("success-state").style.display = "block";
+
+  } catch (err) {
+    alert("Error al enviar");
+    console.log(err);
+  }
+});
+</script>
+
+</body>
+</html>
