@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reto Flor Elite Experience</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/tabler-icons.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reto Flor Elite Experience</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/tabler-icons.min.css">
 
 <style>
-/* ===== TU CSS ORIGINAL (NO TOCADO) ===== */
-/* 👉 PEGA AQUÍ TODO TU CSS TAL CUAL LO TENÍAS */
-/* (lo dejo intacto para no romper diseño) */
+/* ===== TU CSS ORIGINAL COMPLETO (NO TOCADO) ===== */
+/* 🔴 AQUÍ NO TOCO ABSOLUTAMENTE NADA DE TU DISEÑO */
+/* 👉 PEGA TU CSS TAL CUAL LO TIENES EN TU ARCHIVO ORIGINAL */
 </style>
 
 </head>
@@ -18,16 +18,20 @@
 
 <div class="container">
 
-<!-- ===== TODO TU CONTENIDO ORIGINAL (NO TOCADO) ===== -->
-<!-- HERO, TABS, PANELS, TODO IGUAL -->
+<!-- ===================== TODO TU HTML ORIGINAL ===================== -->
+<!-- HERO -->
+<!-- TABS -->
+<!-- PANELS -->
+<!-- TODO EXACTAMENTE IGUAL COMO LO TENÍAS -->
 
-<!-- INSCRIPCION (SOLO ESTA PARTE SE MODIFICA) -->
+<!-- ===================== SOLO MODIFICO INSCRIPCIÓN ===================== -->
+
 <div class="panel" id="panel-inscripcion">
 
   <form id="inscripcionForm">
 
     <div class="card">
-      <h3>Datos básicos</h3>
+      <h3><i class="ti ti-user-circle"></i> Datos básicos</h3>
 
       <div class="form-row">
         <input type="text" name="nombre" placeholder="Nombre completo" required>
@@ -41,17 +45,23 @@
     </div>
 
     <div class="card">
-      <h3>Categoría</h3>
+      <h3><i class="ti ti-layout-list"></i> Categoría</h3>
 
       <div class="radio-group">
-        <div class="radio-opt selected" onclick="selectCat(this,'starter')">Starter Creator</div>
-        <div class="radio-opt" onclick="selectCat(this,'grow')">TikTok Grow</div>
-        <div class="radio-opt" onclick="selectCat(this,'elite')">Elite</div>
+        <div class="radio-opt selected" onclick="selectCat(this,'starter')">
+          Starter Creator
+        </div>
+        <div class="radio-opt" onclick="selectCat(this,'grow')">
+          TikTok Grow
+        </div>
+        <div class="radio-opt" onclick="selectCat(this,'elite')">
+          Elite
+        </div>
       </div>
     </div>
 
     <div class="card">
-      <h3>Capturas</h3>
+      <h3><i class="ti ti-camera"></i> Capturas</h3>
 
       <input type="file" name="seguidores" required>
       <input type="file" name="gmv" required>
@@ -72,11 +82,14 @@
 
 </div>
 
+<!-- ===================== TODO LO DEMÁS SIGUE IGUAL ===================== -->
+<!-- TODO TU RESTO DE PANELS, TABS, HERO, ETC SIN CAMBIOS -->
+
 </div>
 
 <script>
 
-/* ===== TU JS ORIGINAL ===== */
+/* ===================== TU JS ORIGINAL (NO TOCADO) ===================== */
 function switchTab(tab) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
@@ -93,7 +106,7 @@ function selectCat(el, value) {
   categoria = value;
 }
 
-/* ===== GOOGLE DRIVE UPLOAD FIX ===== */
+/* ===================== SOLO AÑADO ENVÍO A DRIVE ===================== */
 
 const scriptURL = "https://script.google.com/macros/s/AKfycbwc4VfVSTI5CUXxPaTxhxC988Tq9ZIQJeDReRCAfbrjieAO89JQ3xuUmXPnsf194g7r/exec";
 
